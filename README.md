@@ -1,59 +1,823 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PHP_Laravel12_Folio
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Project Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+PHP_Laravel12_Folio is a Laravel 12 based portfolio/demo project that demonstrates the use of Folio, a page-based routing package.
+It allows developers to create static, nested, and dynamic pages quickly by simply creating Blade templates. Folio automatically generates routes for these pages without manually defining them in web.php.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This project is perfect for building personal portfolios, blogs, or small web apps with minimal routing setup.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- Page-Based Routing: Automatically maps Blade files in resources/views/pages to URL routes.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Nested Pages: Supports folder-based nested routes like /blog and /blog/article.
 
-## Laravel Sponsors
+- Dynamic Routes: Create dynamic pages using [param], e.g., /users/{id}.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Auto-Generated Routes List: View all routes with php artisan folio:list.
 
-### Premium Partners
+- Simple CSS Styling: Inline CSS included for layout and navigation.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- Fully Static Pages: Great for simple portfolios or blogs without a database.
 
-## Contributing
+- Lightweight: No heavy controllers or route definitions needed for basic pages.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Technologies Used
 
-## Security Vulnerabilities
+1. PHP 8.2+ – Server-side scripting language.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. Laravel 12 – PHP framework for building web applications.
 
-## License
+3. Laravel Folio – Page-based routing package for Laravel.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Blade Templates – Laravel’s template engine for creating HTML pages.
+
+5. MySQL (Optional) – Database support if you want to extend pages with dynamic data.
+
+6. HTML5 & CSS3 – Front-end structure and styling.
+
+
+
+
+---
+
+
+
+## Installation Steps
+
+
+---
+
+
+## STEP 1: Create Laravel 12 Project
+
+### Open terminal / CMD and run:
+
+```
+composer create-project laravel/laravel PHP_Laravel12_Folio "12.*"
+
+```
+
+### Go inside project:
+
+```
+cd PHP_Laravel12_Folio
+
+```
+
+#### Explanation:
+
+Installs a fresh Laravel 12 project with all default directories and files.
+
+
+
+## STEP 2: Database Setup (Optional)
+
+### Update database details:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel12_folio
+DB_USERNAME=root
+DB_PASSWORD=
+
+```
+
+### Create database in MySQL / phpMyAdmin:
+
+```
+Database name: laravel12_folio
+
+```
+
+#### Explanation:
+
+Configures Laravel to connect to a MySQL database (optional for Folio pages).
+
+
+
+
+
+
+## STEP 3: Install Folio
+
+### Install the page‑based routing package:
+
+```
+composer require laravel/folio
+
+```
+
+
+### Then publish the config (optional):
+
+```
+php artisan folio:install
+
+```
+
+#### Explanation: 
+
+Installs Folio, the package that enables page-based routing in Laravel.
+
+Registers Folio service provider and optional config files.
+
+
+
+
+
+
+## STEP 4: Set Up Directory
+
+### In your Laravel project, create:
+
+```
+resources/views/pages/
+
+```
+
+#### Folio scans this folder and automatically maps each Blade file to a route.
+
+
+
+
+## STEP 5: Create Folio Pages
+
+
+### File: resources/views/pages/index.blade.php
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Folio | Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: #4f46e5;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        a.button {
+            background: #4f46e5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Laravel Folio!</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/blog">Blog</a>
+        </nav>
+    </header>
+    <main>
+        <p>This is your Home Page (Folio) with Laravel 12.</p>
+        <a class="button" href="/blog">Visit Blog</a>
+    </main>
+    <footer>
+        &copy; 2026 PHP_Laravel12_Folio
+    </footer>
+</body>
+
+</html>
+
+```
+
+
+
+### File: resources/views/pages/about.blade.php
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Folio | About</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #eef2ff;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: #4f46e5;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>About Laravel Folio</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/blog">Blog</a>
+        </nav>
+    </header>
+    <main>
+        <p>This project uses Folio routing in Laravel 12.</p>
+        <p>Folio allows page-based routing: just create Blade files and they become routes automatically!</p>
+    </main>
+    <footer>
+        &copy; 2026 PHP_Laravel12_Folio
+    </footer>
+</body>
+
+</html>
+
+```
+
+
+### File: resources/views/pages/contact.blade.php
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Folio | Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff4f4;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: #4f46e5;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        form input,
+        form textarea {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/blog">Blog</a>
+        </nav>
+    </header>
+    <main>
+        <p>Email: example@example.com</p>
+        <form>
+            <input type="text" placeholder="Your Name"><br>
+            <input type="email" placeholder="Email"><br>
+            <textarea placeholder="Message"></textarea><br>
+            <button>Send Message</button>
+        </form>
+    </main>
+    <footer>
+        &copy; 2026 PHP_Laravel12_Folio
+    </footer>
+</body>
+
+</html>
+
+```
+
+#### Explanation:
+
+These pages demonstrate static Folio pages with inline CSS.
+
+
+
+
+## STEP 6: Nested Routes Example
+
+### Create:
+
+```
+resources/views/pages/blog/
+
+```
+
+### Then: blog/index.blade.php
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Folio | Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0fff4;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+            margin-top: 40px;
+        }
+
+        h2 {
+            color: #4f46e5;
+        }
+
+        a.button {
+            background: #4f46e5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Blog Home</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <p>List of blog posts will appear here.</p>
+        <a class="button" href="/blog/article">Read Article</a>
+    </main>
+    <footer>
+        &copy; 2026 PHP_Laravel12_Folio
+    </footer>
+</body>
+
+</html>
+
+```
+
+### blog/article.blade.php
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Folio | Blog Article</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fffaf0;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+            margin-top: 40px;
+        }
+
+        h2 {
+            color: #4f46e5;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        a.button {
+            background: #4f46e5;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Blog Article</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog">Back to Blog</a>
+        </nav>
+    </header>
+    <main>
+        <p>This is an example article page.</p>
+        <a class="button" href="/blog">← Back to Blog</a>
+    </main>
+    <footer>
+        &copy; 2026 PHP_Laravel12_Folio
+    </footer>
+</body>
+
+</html>
+
+```
+
+#### Explanation: 
+
+Nested folders in pages/ automatically create URL paths for sub-pages.
+
+
+
+
+
+## STEP 7: Dynamic Route Example
+
+### Create: resources/views/pages/users/[id].blade.php
+
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Folio | User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f8ff;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ddd;
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: #4f46e5;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>User Profile</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/users/{{ $id }}">Refresh</a>
+        </nav>
+    </header>
+    <main>
+        <p>User ID: <strong>{{ $id }}</strong></p>
+    </main>
+    <footer>
+        &copy; 2026 PHP_Laravel12_Folio
+    </footer>
+</body>
+
+</html>
+
+```
+
+### This route will handle any URL like:
+
+```
+/users/1
+/users/99
+
+```
+
+#### Explanation: 
+
+Folio supports dynamic routes using [param]; any /users/{id} URL will render this page with $id injected.
+
+
+
+
+## STEP 8: Add Route
+
+### Open: routes/web.php
+
+```
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+// Optional: redirect root if needed
+Route::get('/', function () {
+    return view('pages.index');
+});
+
+```
+
+
+
+
+## STEP 9: List All Folio Routes
+
+### From project root:
+
+```
+php artisan folio:list
+
+```
+
+#### Explanation: 
+
+Lists all pages automatically routed by Folio, including nested and dynamic routes.
+
+
+
+
+## STEP 10: Run the App
+
+### Start Laravel dev server:
+
+```
+php artisan serve
+
+```
+
+### Open in browser:
+
+```
+http://127.0.0.1:8000
+
+```
+
+#### Explanation: 
+
+You can now visit all Folio pages like /, /about, /contact, /blog, /blog/article, and /users/{id}.
+
+
+
+
+
+
+## So you can see this type Output:
+
+#### Folio auto-routes pages
+
+
+<img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/26faed38-50ea-4a68-8c9c-7ab3593b42bf" />
+
+
+### About Page:
+
+
+<img width="1919" height="865" alt="Screenshot 2026-03-02 175503" src="https://github.com/user-attachments/assets/88bd69fe-99c4-471e-8860-a305594f269f" />
+
+
+### Contact Page:
+
+
+<img width="1919" height="893" alt="Screenshot 2026-03-02 175524" src="https://github.com/user-attachments/assets/33e5dbe4-60d1-42cd-abd7-b9d30a8a1957" />
+
+
+### Blog Page:
+
+
+<img width="1919" height="874" alt="Screenshot 2026-03-02 175542" src="https://github.com/user-attachments/assets/044ecc31-fe8e-45c0-b2f3-ad96fb16928f" />
+
+
+### Blog/article:
+
+
+<img width="1919" height="870" alt="Screenshot 2026-03-02 175551" src="https://github.com/user-attachments/assets/47fe876a-b935-4154-9945-fa5a1e18a073" />
+
+
+### Users/{id}:
+
+
+<img width="1919" height="793" alt="Screenshot 2026-03-02 175651" src="https://github.com/user-attachments/assets/5c0d75b4-a5ae-4056-904c-e46489a2e828" />
+
+
+
+---
+
+# Project Folder Structure:
+
+```
+PHP_Laravel12_Folio/
+├── app/
+├── bootstrap/
+├── config/
+├── database/
+├── public/
+├── resources/
+│   ├── views/
+│   │   └── pages/
+│   │       ├── index.blade.php           → Route: /
+│   │       ├── about.blade.php           → Route: /about
+│   │       ├── contact.blade.php         → Route: /contact
+│   │       ├── blog/
+│   │       │   ├── index.blade.php       → Route: /blog
+│   │       │   └── article.blade.php     → Route: /blog/article
+│   │       └── users/
+│   │           └── [id].blade.php        → Route: /users/{id}
+├── routes/
+│   └── web.php
+├── vendor/
+├── .env
+├── composer.json
+
+```
