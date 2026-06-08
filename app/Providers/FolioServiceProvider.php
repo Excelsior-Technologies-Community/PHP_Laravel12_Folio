@@ -12,7 +12,6 @@ class FolioServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**
@@ -20,9 +19,12 @@ class FolioServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+       
         Folio::path(resource_path('views/pages'))->middleware([
             '*' => [
-                //
+                \Illuminate\Session\Middleware\StartSession::class,
+                \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+                \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
             ],
         ]);
     }
